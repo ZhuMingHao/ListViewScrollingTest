@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ListViewScrollingTest"
+             x:Class="ListViewScrollingTest.MainPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ListView x:Name="ProjectsListView" HasUnevenRows="True" IsGroupingEnabled="True" ItemsSource="{Binding Projects}" ItemSelected="ProjectsListView_ItemSelected">
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Label Text="{Binding Path=Key}" />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Grid.Row="0" LineBreakMode="TailTruncation" Text="{Binding Path=ProjectName}" />
+                            <Label Grid.Column="0" Grid.Row="1" Text="{Binding Path=ProjectReference, StringFormat='Sag: {0}'}" />
+                            <Label Grid.Column="0" Grid.Row="2" Text="{Binding Path=CustomerName}" />
+                            <Label Grid.Column="0" Grid.Row="3" Text="{Binding Path=FullAddress}" />
+                            <Label Grid.Column="1" Grid.Row="0" Text="{Binding Path=StartTime}" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</ContentPage>
